@@ -1,0 +1,36 @@
+import feroz.*
+import caperucita.*
+import cazador.*
+
+describe "Simulación de historia" {
+    test 
+        "
+        Primer acto: Feroz corre hacia el bosque
+        Segundo acto: Corre a la casa de abuelita y se la come
+        Tercer acto: Se molesta con caperucita y se la come
+        Cuarto acto: Se encuentra con el cazador, el cazador lo amenaza y pelean, y
+        el cazador sale victorioso ya que tiene mas energia.
+        " {
+        feroz.correr()
+        assert.equals(feroz.peso(), 9)
+
+        feroz.correr()
+        feroz.comer(abuelita)
+        assert.equals(feroz.peso(), 13)
+
+        caperucita.disminuirCantidadDeManzanas(1)
+        feroz.comer(caperucita)
+        assert.equals(feroz.peso(), 19)
+
+        cazador.amenazar(feroz)
+        assert.equals(feroz.peso(), 10)
+
+        feroz.pelear()
+        cazador.pelear()
+        assert.equals(feroz.peso(), 8)
+        assert.equals(cazador.peso(), 90)
+
+        assert.equals(feroz.energia(), 4)
+        assert.equals(cazador.energia(), 45)
+    }
+}
